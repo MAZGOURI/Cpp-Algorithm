@@ -1,32 +1,63 @@
-#include <bits/stdc++.h>
-using namespace std;
- 
-const int N=10e5+7;
-int n,k=1;
-int arr[N];
+        /** by Youssef Mazgouri. **
+++  ++ +---+ ++ ++ +----+ +----+ +---+ +---+
+¦++++¦ ¦+-+¦ ¦¦ ¦¦ ¦+--+¦ ¦+--+¦ ¦+--+ ¦+--+
+++++++ ¦¦ ¦¦ ¦¦ ¦¦ ¦¦  ++ ¦¦  ++ ¦+--+ ¦+--+
+ ++++  ¦¦ ¦¦ ¦¦ ¦¦ ¦+---+ ¦+---+ ¦+--+ ¦+--+
+  ¦¦   ¦¦ ¦¦ ¦¦ ¦¦ +---+¦ +---+¦ ¦¦    ¦¦ 
+  ¦¦   ¦+-+¦ ¦+-+¦ +---+¦ +---+¦ ¦+--+ ¦¦
+  ++   +---+ +---+ +----+ +----+ +---+ ++
+**********************************************/
 
-void Sieve(){
-	for(int i=2;i<N;i++)
+
+#include <iostream>
+using namespace std;
+
+const int N = 100010; 
+int table[N]; // table for lowest prime factor
+
+/*
+* Description : method for compute sieve
+*/
+void sieve()
+{
+	for(int i = 2; i < N; i += 2) table[i] = 2;	
+	for(int i = 3; i < N; i += 2)
 	{
-		if(arr[i]==0)
+		if(table[i] == 0) 
 		{
-			arr[i]=k;
-			for(int j=i+i;j<N;j+=i)
+			table[i] = i;
+			for(int j = i + i; j < N; j += i) 
 			{
-				arr[j]=k;	
+				if(table[j] == 0) table[j] = i;
 			}
-			k++;	
 		}
 	}
 }
- 
-int main()
+
+/*
+* Description : method for compute prime factors of a number
+*  
+* @param : number - integer number
+*/
+void factorize(int number) 
 {
-	cin>>n;
-	Sieve();
-	for(int i=2;i<n+1;i++)
+	while(number > 1) 
 	{
-		cout<<arr[i]<<" ";
+		cout << table[number] << " ";
+		number /= table[number];
+	}
+	cout << endl;
+}
+
+/* Example of testing */
+int main() 
+{
+	sieve();
+	for(int i = 1; i <= 100; i++) 
+	{
+		cout << "prime of " << i << " is: " << endl;;
+		factorize(i);
+		cout << endl;
 	}
 	return 0;
 }
