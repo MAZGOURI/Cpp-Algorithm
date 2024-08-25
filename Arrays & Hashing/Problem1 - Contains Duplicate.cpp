@@ -50,10 +50,10 @@ bool hasDuplicate(vector<int>& nums)
 int main() 
 {
     vector<int> nums1{1, 2, 3, 3};
-    cout<<"nums1 liste "<<(hasDuplicate(nums1)?"has a duplicate number":"has no duplicate numbers")<<endl;
+    cout<<"nums1 liste "<<(hasDuplicate(nums1)?"has a duplicate number.":"has no duplicate numbers.")<<endl;
     
     vector<int> nums2{1, 2, 3, 4};
-    cout<<"nums2 liste "<<(hasDuplicate(nums2)?"has a duplicate number":"has no duplicate numbers")<<endl;
+    cout<<"nums2 liste "<<(hasDuplicate(nums2)?"has a duplicate number.":"has no duplicate numbers.")<<endl;
     
     return 0;
 }
